@@ -369,14 +369,14 @@ const App = () => {
 
                                             <div className="p-6 bg-white border border-slate-200 rounded-[32px] min-w-[180px] shadow-2xl relative overflow-hidden">
                                                 <p className="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em] text-center mb-1">Chlorophyll</p>
-                                                <div className="h-[90px] w-full relative mt-2">
+                                                <div className="h-[100px] w-full relative mt-2">
                                                     <ResponsiveContainer width="100%" height="100%">
-                                                        <PieChart>
+                                                        <PieChart margin={{ top: 15, bottom: 0, left: 0, right: 0 }}>
                                                             <Pie
                                                                 data={[
-                                                                    { name: 'Low', value: 1, color: '#f43f5e' },     // rose-500
-                                                                    { name: 'Optimal', value: 1, color: '#10b981' }, // emerald-500
-                                                                    { name: 'High', value: 1, color: '#38bdf8' }     // sky-400
+                                                                    { name: 'Low', value: 1, color: '#a7f3d0' },     // emerald-200
+                                                                    { name: 'Optimal', value: 1, color: '#34d399' }, // emerald-400
+                                                                    { name: 'High', value: 1, color: '#047857' }     // emerald-700
                                                                 ]}
                                                                 cx="50%"
                                                                 cy="100%"
@@ -390,9 +390,9 @@ const App = () => {
                                                                 cornerRadius={4}
                                                             >
                                                                 {[
-                                                                    { name: 'Low', value: 1, color: '#f43f5e' },
-                                                                    { name: 'Optimal', value: 1, color: '#10b981' },
-                                                                    { name: 'High', value: 1, color: '#38bdf8' }
+                                                                    { name: 'Low', value: 1, color: '#a7f3d0' },
+                                                                    { name: 'Optimal', value: 1, color: '#34d399' },
+                                                                    { name: 'High', value: 1, color: '#047857' }
                                                                 ].map((entry, index) => {
                                                                     const cci = parseFloat(activeData.cci);
                                                                     const isActive = (index === 0 && cci <= 15) || (index === 1 && cci > 15 && cci <= 35) || (index === 2 && cci > 35);
@@ -409,7 +409,7 @@ const App = () => {
                                                         </PieChart>
                                                     </ResponsiveContainer>
                                                     <div className="absolute bottom-0 left-0 right-0 flex flex-col items-center justify-end pointer-events-none">
-                                                        <span className={`text-xl font-black tracking-tight ${parseFloat(activeData.cci) <= 15 ? 'text-rose-700' : parseFloat(activeData.cci) > 35 ? 'text-sky-600' : 'text-emerald-700'}`}>
+                                                        <span className={`text-xl font-black tracking-tight ${parseFloat(activeData.cci) <= 15 ? 'text-rose-600' : parseFloat(activeData.cci) > 35 ? 'text-emerald-600' : 'text-amber-500'}`}>
                                                             {parseFloat(activeData.cci) <= 15 ? 'LOW' : parseFloat(activeData.cci) > 35 ? 'HIGH' : 'OPTIMAL'}
                                                         </span>
                                                     </div>

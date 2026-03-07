@@ -184,8 +184,8 @@ const App = () => {
     return (
         <div className="min-h-screen bg-slate-50 text-slate-600 font-sans selection:bg-emerald-600/30 overflow-hidden flex flex-col">
             {/* Premium Header */}
-            <header className="h-16 border-b border-slate-200 bg-white/80 backdrop-blur-xl flex items-center justify-between px-4 md:px-6 z-50 shrink-0">
-                <div className="flex items-center gap-2 md:gap-4">
+            <header className="h-16 border-b border-slate-200 bg-white/80 backdrop-blur-xl flex items-center justify-between px-6 z-50 shrink-0">
+                <div className="flex items-center gap-4">
                     <div className="w-8 h-8 bg-gradient-to-tr from-emerald-500 to-emerald-300 rounded-lg flex items-center justify-center shadow-md">
                         <Leaf className="text-white w-5 h-5" />
                     </div>
@@ -199,7 +199,7 @@ const App = () => {
                 </div>
 
                 {data && (
-                    <div className="flex md:flex items-center bg-slate-50 rounded-full px-1.5 py-1.5 border border-slate-200 gap-1 overflow-x-auto hide-scrollbar absolute left-1/2 -translate-x-1/2 md:static md:translate-x-0 w-max max-w-[40%] md:max-w-none">
+                    <div className="hidden md:flex items-center bg-slate-50 rounded-full px-1.5 py-1.5 border border-slate-200 gap-1">
                         {[
                             { id: 'analysis', icon: Microscope, label: 'Analysis' },
                             { id: 'insights', icon: BarChart3, label: 'Insights' },
@@ -225,11 +225,11 @@ const App = () => {
                 </div>
             </header>
 
-            <div className="flex-1 flex overflow-hidden pb-20 md:pb-0">
+            <div className="flex-1 flex overflow-hidden">
                 {/* Modern Sidebar */}
-                <aside className="fixed bottom-0 md:relative w-full md:w-72 bg-white border-t md:border-t-0 md:border-r border-slate-200 flex flex-row md:flex-col p-3 md:p-6 gap-4 md:gap-8 shrink-0 z-50 overflow-x-auto md:overflow-y-auto custom-scrollbar h-20 md:h-auto items-center md:items-stretch shadow-[0_-10px_40px_rgba(0,0,0,0.05)] md:shadow-none">
-                    <div className="flex flex-row md:flex-col gap-4 md:space-y-6 items-center md:items-stretch min-w-max md:min-w-0 h-full md:h-auto">
-                        <div className="space-y-1 md:space-y-2 flex flex-col justify-center h-full">
+                <aside className="w-72 bg-white border-r border-slate-200 flex flex-col p-6 gap-8 shrink-0">
+                    <div className="space-y-6">
+                        <div className="space-y-2">
                             <label className="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em] px-2">Deployment Zone</label>
                             <div className="p-3 bg-slate-50 rounded-2xl border border-slate-200 flex items-center gap-3 group cursor-pointer hover:bg-slate-100 transition-all">
                                 <div className="w-10 h-10 rounded-xl bg-slate-200 flex items-center justify-center group-hover:bg-emerald-600/20 group-hover:text-emerald-700 transition-colors">
@@ -242,13 +242,13 @@ const App = () => {
                             </div>
                         </div>
 
-                        <div className="space-y-2 md:space-y-4 flex flex-row md:flex-col items-center md:items-stretch h-full">
-                            <div className="flex items-center justify-between px-2 gap-2 h-full">
+                        <div className="space-y-4">
+                            <div className="flex items-center justify-between px-2">
                                 <label className="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em]">Live Queue</label>
-                                <span className="text-[10px] bg-slate-100 text-slate-900 px-2 py-0.5 rounded-full font-bold hidden md:block">{data ? data.length : 0}</span>
+                                <span className="text-[10px] bg-slate-100 text-slate-900 px-2 py-0.5 rounded-full font-bold">{data ? data.length : 0}</span>
                             </div>
 
-                            <div className="hidden md:block space-y-2 max-h-[50vh] overflow-y-auto custom-scrollbar pr-2">
+                            <div className="space-y-2 max-h-[50vh] overflow-y-auto custom-scrollbar pr-2">
                                 {!data ? (
                                     <div className="py-12 text-center opacity-30 flex flex-col items-center gap-4">
                                         <Cpu size={32} />
@@ -281,8 +281,8 @@ const App = () => {
                         </div>
                     </div>
 
-                    <div className="mt-0 md:mt-auto space-y-0 md:space-y-4 flex flex-row md:flex-col items-center md:items-stretch gap-4 md:gap-0 ml-auto md:ml-0">
-                        <div className="hidden md:block p-4 bg-emerald-50 rounded-2xl border border-emerald-200">
+                    <div className="mt-auto space-y-4">
+                        <div className="p-4 bg-emerald-50 rounded-2xl border border-emerald-200">
                             <div className="flex items-center gap-2 mb-2">
                                 <Sparkles size={14} className="text-emerald-700" />
                                 <span className="text-[10px] font-black text-slate-900 uppercase tracking-wider">Cloud Tier</span>
@@ -290,7 +290,7 @@ const App = () => {
                             <div className="h-1 bg-slate-100 rounded-full mb-1"><div className="w-[34%] h-full bg-emerald-500 rounded-full shadow-[0_0_8px_#10b981]"></div></div>
                             <p className="text-[9px] text-slate-600 font-bold uppercase tracking-widest">34% Capacity Utilized</p>
                         </div>
-                        <button onClick={() => { setData(null); setActiveTab('analysis'); }} className="px-6 md:w-full py-2 md:py-3 rounded-xl bg-slate-50 hover:bg-slate-100 transition-all text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 hover:text-slate-900 border border-slate-200 whitespace-nowrap">
+                        <button onClick={() => { setData(null); setActiveTab('analysis'); }} className="w-full py-3 rounded-xl bg-slate-50 hover:bg-slate-100 transition-all text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 hover:text-slate-900 border border-slate-200">
                             Hard Flush
                         </button>
                     </div>
@@ -308,7 +308,7 @@ const App = () => {
                                 onDragOver={(e) => { e.preventDefault(); setIsDragging(true); }}
                                 onDragLeave={() => setIsDragging(false)}
                                 onDrop={(e) => { e.preventDefault(); setIsDragging(false); processFile(e.dataTransfer.files[0]); }}
-                                className={`w-full max-w-xl p-8 md:p-16 rounded-[40px] md:rounded-[60px] border border-slate-200 transition-all cursor-pointer group flex flex-col items-center text-center gap-6 md:gap-10 backdrop-blur-xl bg-white shadow-2xl mx-4 md:mx-0 ${isDragging ? 'border-emerald-400 bg-emerald-50 scale-[1.03]' : 'hover:bg-slate-100 hover:border-slate-300'
+                                className={`w-full max-w-xl p-16 rounded-[60px] border border-slate-200 transition-all cursor-pointer group flex flex-col items-center text-center gap-10 backdrop-blur-xl bg-white shadow-2xl ${isDragging ? 'border-emerald-400 bg-emerald-50 scale-[1.03]' : 'hover:bg-slate-100 hover:border-slate-300'
                                     }`}
                                 onClick={() => document.getElementById('file-upload').click()}
                             >
@@ -317,7 +317,7 @@ const App = () => {
                                 </div>
 
                                 <div className="space-y-4">
-                                    <h2 className="text-2xl md:text-4xl font-black text-slate-900 tracking-tighter leading-tight">Advanced Soil & Plant<br />Analysis Engine</h2>
+                                    <h2 className="text-4xl font-black text-slate-900 tracking-tighter leading-tight">Advanced Soil & Plant<br />Analysis Engine</h2>
                                     <p className="text-slate-500 text-sm max-w-xs mx-auto leading-relaxed font-medium">
                                         Hyperspectral ingestion of <span className="text-emerald-700 font-black italic">XLSX</span> or <span className="text-emerald-700 font-black italic">CSV</span> signatures.
                                     </p>
@@ -341,24 +341,24 @@ const App = () => {
                             )}
                         </div>
                     ) : (
-                        <div className="p-4 sm:p-8 md:p-12 animate-in fade-in slide-in-from-bottom-10 duration-1000 w-full max-w-7xl mx-auto">
+                        <div className="p-8 md:p-12 animate-in fade-in slide-in-from-bottom-10 duration-1000 w-full max-w-7xl mx-auto">
                             {/* ANALYSIS TAB VIEW */}
                             {activeTab === 'analysis' && (
                                 <div className="space-y-12">
-                                    <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 lg:gap-10">
+                                    <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-10">
                                         <div className="space-y-4">
                                             <div className="flex items-center gap-3">
                                                 <span className="px-3 py-1 bg-emerald-100 border border-emerald-200 rounded-full text-[9px] font-black text-emerald-700 uppercase tracking-widest">Spectral Matrix Active</span>
                                             </div>
-                                            <h1 className="text-4xl md:text-6xl font-black text-slate-900 tracking-tighter leading-none truncate w-full max-w-full lg:max-w-lg">{activeData.id}</h1>
+                                            <h1 className="text-6xl font-black text-slate-900 tracking-tighter leading-none truncate max-w-lg">{activeData.id}</h1>
                                             <div className="flex items-center gap-6 text-slate-500 text-[11px] font-black uppercase tracking-widest">
                                                 <div className="flex items-center gap-2"><MapPin size={14} className="text-emerald-700" /> {activeData.gps}</div>
                                                 <div className="flex items-center gap-2"><Clock size={14} /> {activeData.timestamp}</div>
                                             </div>
                                         </div>
 
-                                        <div className="flex flex-col sm:flex-row gap-4 w-full lg:w-auto">
-                                            <div className="p-6 bg-white border border-slate-200 rounded-[32px] flex-1 sm:min-w-[140px] md:min-w-[180px] shadow-2xl relative overflow-hidden group">
+                                        <div className="flex gap-4">
+                                            <div className="p-6 bg-white border border-slate-200 rounded-[32px] min-w-[180px] shadow-2xl relative overflow-hidden group">
                                                 <div className="absolute top-0 right-0 w-24 h-24 bg-emerald-50 blur-3xl rounded-full group-hover:bg-emerald-100 transition-all"></div>
                                                 <p className="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em] mb-2">CCI Signature</p>
                                                 <div className="flex items-end gap-2">
@@ -367,11 +367,11 @@ const App = () => {
                                                 </div>
                                             </div>
 
-                                            <div className="p-6 bg-white border border-slate-200 rounded-[32px] flex-1 sm:min-w-[140px] md:min-w-[180px] shadow-2xl relative overflow-hidden">
+                                            <div className="p-6 bg-white border border-slate-200 rounded-[32px] min-w-[180px] shadow-2xl relative overflow-hidden">
                                                 <p className="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em] text-center mb-1">Chlorophyll</p>
-                                                <div className="h-[120px] w-full relative mt-2">
+                                                <div className="h-[100px] w-full relative mt-2">
                                                     <ResponsiveContainer width="100%" height="100%">
-                                                        <PieChart margin={{ top: 10, bottom: 20, left: 15, right: 15 }}>
+                                                        <PieChart margin={{ top: 15, bottom: 0, left: 0, right: 0 }}>
                                                             <Pie
                                                                 data={[
                                                                     { name: 'Low', value: 1, color: '#a7f3d0' },     // emerald-200
@@ -379,11 +379,11 @@ const App = () => {
                                                                     { name: 'High', value: 1, color: '#047857' }     // emerald-700
                                                                 ]}
                                                                 cx="50%"
-                                                                cy="85%"
+                                                                cy="100%"
                                                                 startAngle={180}
                                                                 endAngle={0}
-                                                                innerRadius="70%"
-                                                                outerRadius="100%"
+                                                                innerRadius={50}
+                                                                outerRadius={70}
                                                                 paddingAngle={5}
                                                                 dataKey="value"
                                                                 stroke="none"
@@ -416,7 +416,7 @@ const App = () => {
                                                 </div>
                                             </div>
 
-                                            <div className="p-6 bg-white border border-slate-200 rounded-[32px] flex-1 sm:min-w-[140px] md:min-w-[180px] shadow-2xl">
+                                            <div className="p-6 bg-white border border-slate-200 rounded-[32px] min-w-[180px] shadow-2xl">
                                                 <p className="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em] mb-2">Health Grade</p>
                                                 <div className="text-3xl font-black text-slate-900 tracking-tight">{getHealthScore(activeData.cci).score}%</div>
                                                 <div className={`mt-2 text-[10px] font-black uppercase tracking-widest ${getHealthScore(activeData.cci).color}`}>{getHealthScore(activeData.cci).label}</div>
@@ -431,10 +431,10 @@ const App = () => {
 
                                                 <div className="flex items-center justify-between mb-12 relative z-10">
                                                     <div>
-                                                        <h3 className="text-xs md:text-sm font-black text-slate-900 uppercase tracking-[0.3em]">Spectral Response Analysis</h3>
-                                                        <p className="text-[9px] md:text-[10px] text-slate-500 font-bold uppercase mt-1 tracking-widest">Deep Layer Reflectance Profile</p>
+                                                        <h3 className="text-xs font-black text-slate-900 uppercase tracking-[0.3em]">Spectral Response Analysis</h3>
+                                                        <p className="text-[10px] text-slate-500 font-bold uppercase mt-1 tracking-widest">Deep Layer Reflectance Profile</p>
                                                     </div>
-                                                    <div className="flex gap-4 md:gap-8 flex-col md:flex-row items-end md:items-center">
+                                                    <div className="flex gap-8">
                                                         <div className="flex items-center gap-2">
                                                             <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 shadow-sm"></div>
                                                             <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest">NIR Peak</span>
@@ -496,8 +496,8 @@ const App = () => {
                                         </div>
 
                                         <div className="lg:col-span-4 space-y-8">
-                                            <div className="bg-gradient-to-br from-emerald-500 to-emerald-700 rounded-[48px] p-6 md:p-10 shadow-2xl flex flex-col justify-between min-h-[300px] md:h-[350px] group relative overflow-hidden">
-                                                <div className="absolute -bottom-10 -right-10 w-40 md:w-56 h-40 md:h-56 bg-slate-100 rounded-full blur-3xl group-hover:scale-125 transition-transform duration-700"></div>
+                                            <div className="bg-gradient-to-br from-emerald-500 to-emerald-700 rounded-[48px] p-10 shadow-2xl flex flex-col justify-between h-[350px] group relative overflow-hidden">
+                                                <div className="absolute -bottom-10 -right-10 w-56 h-56 bg-slate-100 rounded-full blur-3xl group-hover:scale-125 transition-transform duration-700"></div>
                                                 <div className="relative z-10">
                                                     <div className="flex justify-between items-start mb-8">
                                                         <h3 className="text-[11px] font-black text-white/50 uppercase tracking-[0.3em]">Yield Forecast</h3>
@@ -518,7 +518,7 @@ const App = () => {
                                                 </button>
                                             </div>
 
-                                            <div className="bg-white border border-slate-200 rounded-[48px] p-6 md:p-10 flex flex-col gap-8 flex-1 min-h-[350px] md:min-h-[400px]">
+                                            <div className="bg-white border border-slate-200 rounded-[48px] p-10 flex flex-col gap-8 flex-1 min-h-[400px]">
                                                 <div className="flex items-center gap-4">
                                                     <div className="w-10 h-10 bg-slate-50 rounded-xl flex items-center justify-center text-emerald-700">
                                                         <Cpu size={20} />
@@ -568,18 +568,18 @@ const App = () => {
                             {activeTab === 'insights' && (
                                 <div className="space-y-12">
                                     <header className="space-y-4">
-                                        <div className="inline-flex items-center gap-2 bg-emerald-100 px-3 py-1 rounded-full border border-emerald-200 text-emerald-700 text-[9px] font-black uppercase tracking-widest w-fit">Enterprise Analytics Engine</div>
-                                        <h2 className="text-4xl md:text-6xl font-black text-slate-900 tracking-tighter leading-none">Field Correlations</h2>
+                                        <div className="inline-flex items-center gap-2 bg-emerald-100 px-3 py-1 rounded-full border border-emerald-200 text-emerald-700 text-[9px] font-black uppercase tracking-widest">Enterprise Analytics Engine</div>
+                                        <h2 className="text-6xl font-black text-slate-900 tracking-tighter leading-none">Field Correlations</h2>
                                         <p className="text-slate-500 text-sm font-medium tracking-wide max-w-2xl">Comprehensive dataset analysis correlating chlorophyll content with projected biomass and historical yield trends across all active nodes.</p>
                                     </header>
 
                                     <div className="grid grid-cols-1 gap-12">
-                                        <div className="bg-white border border-slate-200 rounded-[48px] p-6 md:p-10 h-[400px] md:h-[500px]">
-                                            <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-8 md:mb-12 gap-4 md:gap-0">
-                                                <h3 className="text-xs md:text-sm font-black text-slate-900 uppercase tracking-[0.3em]">CCI vs Biomass Projection</h3>
-                                                <div className="flex gap-6 md:gap-10">
-                                                    <div className="flex items-center gap-2 text-[9px] md:text-[10px] font-black text-emerald-700 uppercase tracking-widest"><div className="w-2 h-2 rounded-full bg-emerald-500" /> CCI Value</div>
-                                                    <div className="flex items-center gap-2 text-[9px] md:text-[10px] font-black text-cyan-700 uppercase tracking-widest"><div className="w-4 h-1.5 bg-cyan-400 rounded-sm" /> Biomass (MT)</div>
+                                        <div className="bg-white border border-slate-200 rounded-[48px] p-10 h-[500px]">
+                                            <div className="flex items-center justify-between mb-12">
+                                                <h3 className="text-xs font-black text-slate-900 uppercase tracking-[0.3em]">CCI vs Biomass Projection</h3>
+                                                <div className="flex gap-10">
+                                                    <div className="flex items-center gap-2 text-[10px] font-black text-emerald-700 uppercase tracking-widest"><div className="w-2 h-2 rounded-full bg-emerald-500" /> CCI Value</div>
+                                                    <div className="flex items-center gap-2 text-[10px] font-black text-cyan-700 uppercase tracking-widest"><div className="w-4 h-1.5 bg-cyan-400 rounded-sm" /> Biomass (MT)</div>
                                                 </div>
                                             </div>
                                             <ResponsiveContainer width="100%" height="80%">
@@ -597,19 +597,19 @@ const App = () => {
                                             <div className="p-8 bg-white border border-slate-200 rounded-[40px] space-y-4">
                                                 <div className="w-10 h-10 bg-emerald-100 rounded-2xl flex items-center justify-center text-emerald-700"><TrendingUp /></div>
                                                 <h4 className="text-sm font-black text-slate-900 uppercase tracking-widest">Dataset Average</h4>
-                                                <p className="text-3xl md:text-4xl font-black text-slate-900 tracking-tighter">{(trendData.reduce((acc, curr) => acc + curr.cci, 0) / trendData.length).toFixed(2)}</p>
+                                                <p className="text-4xl font-black text-slate-900 tracking-tighter">{(trendData.reduce((acc, curr) => acc + curr.cci, 0) / trendData.length).toFixed(2)}</p>
                                                 <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest">Total Active Nodes: {trendData.length}</p>
                                             </div>
                                             <div className="p-8 bg-white border border-slate-200 rounded-[40px] space-y-4">
                                                 <div className="w-10 h-10 bg-cyan-500/10 rounded-2xl flex items-center justify-center text-cyan-700"><Target /></div>
                                                 <h4 className="text-sm font-black text-slate-900 uppercase tracking-widest">Peak Performance</h4>
-                                                <p className="text-3xl md:text-4xl font-black text-slate-900 tracking-tighter">{Math.max(...trendData.map(d => d.cci)).toFixed(2)}</p>
+                                                <p className="text-4xl font-black text-slate-900 tracking-tighter">{Math.max(...trendData.map(d => d.cci)).toFixed(2)}</p>
                                                 <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest">Optimized Nitrogen Sync</p>
                                             </div>
                                             <div className="p-8 bg-white border border-slate-200 rounded-[40px] space-y-4">
                                                 <div className="w-10 h-10 bg-amber-100 rounded-2xl flex items-center justify-center text-amber-700"><ShieldCheck /></div>
                                                 <h4 className="text-sm font-black text-slate-900 uppercase tracking-widest">System Health</h4>
-                                                <p className="text-3xl md:text-4xl font-black text-slate-900 tracking-tighter">Stable</p>
+                                                <p className="text-4xl font-black text-slate-900 tracking-tighter">Stable</p>
                                                 <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest">Algorithm Validation v4.2</p>
                                             </div>
                                         </div>
@@ -621,20 +621,20 @@ const App = () => {
                             {activeTab === 'mapping' && (
                                 <div className="space-y-12">
                                     <header className="space-y-4">
-                                        <div className="inline-flex items-center gap-2 bg-emerald-100 px-3 py-1 rounded-full border border-emerald-200 text-emerald-700 text-[9px] font-black uppercase tracking-widest w-fit">Geospatial Intelligence</div>
-                                        <h2 className="text-4xl md:text-6xl font-black text-slate-900 tracking-tighter leading-none">Node Deployment</h2>
+                                        <div className="inline-flex items-center gap-2 bg-emerald-100 px-3 py-1 rounded-full border border-emerald-200 text-emerald-700 text-[9px] font-black uppercase tracking-widest">Geospatial Intelligence</div>
+                                        <h2 className="text-6xl font-black text-slate-900 tracking-tighter leading-none">Node Deployment</h2>
                                         <p className="text-slate-500 text-sm font-medium tracking-wide max-w-2xl">Geolocated measurement points visualized across the field grid for spatial analysis of chlorophyll variability.</p>
                                     </header>
 
                                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
-                                        <div className="lg:col-span-8 bg-white border border-slate-200 rounded-[48px] p-6 md:p-10 h-[400px] md:h-[600px] relative overflow-hidden flex items-center justify-center">
+                                        <div className="lg:col-span-8 bg-white border border-slate-200 rounded-[48px] p-10 h-[600px] relative overflow-hidden flex items-center justify-center">
                                             {/* Stylized Simulated Map Grid */}
                                             <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#10b981_1px,transparent_1px)] bg-[size:30px_30px]"></div>
 
                                             <div className="relative w-full h-full border border-slate-200 bg-white/80 rounded-3xl overflow-hidden shadow-inner flex items-center justify-center group">
                                                 {/* Plotting simulated points on a grid */}
-                                                <div className="relative w-[90%] md:w-[80%] h-[90%] md:h-[80%] border-2 border-emerald-200 rounded-xl bg-emerald-50 flex items-center justify-center overflow-auto hide-scrollbar">
-                                                    <div className="absolute inset-0 grid grid-cols-10 grid-rows-10 min-w-[300px] min-h-[300px]">
+                                                <div className="relative w-[80%] h-[80%] border-2 border-emerald-200 rounded-xl bg-emerald-50 flex items-center justify-center">
+                                                    <div className="absolute inset-0 grid grid-cols-10 grid-rows-10">
                                                         {Array.from({ length: 100 }).map((_, i) => (
                                                             <div key={i} className="border border-slate-200"></div>
                                                         ))}

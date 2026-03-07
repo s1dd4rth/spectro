@@ -583,7 +583,7 @@ const App = () => {
                                                 </div>
                                             </div>
                                             <ResponsiveContainer width="100%" height="80%">
-                                                <ComposedChart data={trendData}>
+                                                <ComposedChart data={trendData} margin={{ bottom: 20 }}>
                                                     <XAxis dataKey="name" stroke="#e2e8f0" fontSize={10} axisLine={false} tickLine={false} label={{ value: 'SCAN NODE ID', position: 'bottom', fill: '#475569', fontSize: 10, fontWeight: 'black', offset: 0 }} />
                                                     <YAxis stroke="#e2e8f0" fontSize={10} axisLine={false} tickLine={false} />
                                                     <Tooltip contentStyle={{ backgroundColor: '#000', border: '1px solid #1e293b', borderRadius: '16px' }} />

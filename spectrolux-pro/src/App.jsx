@@ -298,17 +298,17 @@ const App = () => {
 
                 {/* Main Workspace */}
                 <main className="flex-1 bg-slate-50 relative overflow-y-auto custom-scrollbar flex flex-col">
-                    <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.03)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none"></div>
+                    <div className="absolute inset-0 z-0 bg-[linear-gradient(rgba(0,0,0,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.03)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none"></div>
 
                     {!data ? (
-                        <div className="flex-1 flex flex-col items-center justify-center p-10 relative">
-                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-emerald-100 blur-[120px] rounded-full"></div>
+                        <div className="flex-1 flex flex-col items-center justify-center p-10 relative z-10">
+                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-emerald-100 blur-[120px] rounded-full z-0 pointer-events-none"></div>
 
                             <div
                                 onDragOver={(e) => { e.preventDefault(); setIsDragging(true); }}
                                 onDragLeave={() => setIsDragging(false)}
                                 onDrop={(e) => { e.preventDefault(); setIsDragging(false); processFile(e.dataTransfer.files[0]); }}
-                                className={`w-full max-w-xl p-8 md:p-16 rounded-[40px] md:rounded-[60px] border border-slate-200 transition-all cursor-pointer group flex flex-col items-center text-center gap-6 md:gap-10 backdrop-blur-xl bg-white shadow-2xl mx-4 md:mx-0 ${isDragging ? 'border-emerald-400 bg-emerald-50 scale-[1.03]' : 'hover:bg-slate-100 hover:border-slate-300'
+                                className={`w-full max-w-xl p-8 md:p-16 rounded-[40px] md:rounded-[60px] border border-slate-200 transition-all cursor-pointer group flex flex-col items-center text-center gap-6 md:gap-10 backdrop-blur-xl bg-white/90 shadow-2xl mx-4 md:mx-0 relative z-10 ${isDragging ? 'border-emerald-400 bg-emerald-50 scale-[1.03]' : 'hover:bg-slate-50 hover:border-slate-300'
                                     }`}
                                 onClick={() => document.getElementById('file-upload').click()}
                             >
@@ -329,19 +329,19 @@ const App = () => {
                                 </button>
                             </div>
 
-                            {loading && <div className="mt-12 flex items-center gap-3 text-emerald-700 text-[11px] font-black uppercase tracking-[0.4em] animate-pulse">
+                            {loading && <div className="mt-12 flex items-center gap-3 text-emerald-700 text-[11px] font-black uppercase tracking-[0.4em] animate-pulse relative z-10">
                                 <Activity size={18} /> Deep Neural Processing...
                             </div>}
 
                             {error && (
-                                <div className="mt-12 bg-rose-100 border border-rose-500/20 p-5 rounded-3xl flex items-center gap-3 max-w-sm animate-in zoom-in-95">
+                                <div className="mt-12 bg-rose-100 border border-rose-500/20 p-5 rounded-3xl flex items-center gap-3 max-w-sm animate-in zoom-in-95 relative z-10">
                                     <AlertCircle className="text-rose-600" size={24} />
                                     <p className="text-xs font-black text-rose-700 leading-tight uppercase tracking-tight">{error}</p>
                                 </div>
                             )}
                         </div>
                     ) : (
-                        <div className="p-4 sm:p-8 md:p-12 animate-in fade-in slide-in-from-bottom-10 duration-1000 w-full max-w-7xl mx-auto">
+                        <div className="p-4 sm:p-8 md:p-12 animate-in fade-in slide-in-from-bottom-10 duration-1000 w-full max-w-7xl mx-auto relative z-10">
                             {/* ANALYSIS TAB VIEW */}
                             {activeTab === 'analysis' && (
                                 <div className="space-y-12">
@@ -449,27 +449,38 @@ const App = () => {
                                                 <div className="flex-1 w-full relative z-10">
                                                     {fileMode === 'spectral' ? (
                                                         <ResponsiveContainer width="100%" height="100%">
-                                                            <AreaChart data={activeData.curve}>
+                                                            <AreaChart data={activeData.curve} margin={{ top: 20, right: 20, bottom: 20, left: 0 }}>
                                                                 <defs>
                                                                     <linearGradient id="glow" x1="0" y1="0" x2="0" y2="1">
                                                                         <stop offset="5%" stopColor="#10b981" stopOpacity={0.6} />
                                                                         <stop offset="95%" stopColor="#10b981" stopOpacity={0} />
                                                                     </linearGradient>
                                                                 </defs>
-                                                                <CartesianGrid strokeDasharray="0" vertical={false} stroke="rgba(255,255,255,0.03)" />
                                                                 <XAxis
                                                                     dataKey="wavelength"
-                                                                    stroke="rgba(255,255,255,0.2)"
+                                                                    stroke="#94a3b8"
                                                                     fontSize={10}
                                                                     tickLine={false}
                                                                     axisLine={false}
-                                                                    tickFormatter={(v) => `${Math.round(v)}`}
+                                                                    tickFormatter={(v) => `${Math.round(v)} nm`}
+                                                                    dy={10}
                                                                 />
-                                                                <YAxis hide domain={[0, 'auto']} />
+                                                                <YAxis
+                                                                    hide={false}
+                                                                    stroke="#94a3b8"
+                                                                    fontSize={10}
+                                                                    tickLine={false}
+                                                                    axisLine={false}
+                                                                    domain={[0, 'auto']}
+                                                                    tickFormatter={(v) => `${v}%`}
+                                                                    dx={-10}
+                                                                />
                                                                 <Tooltip
-                                                                    contentStyle={{ backgroundColor: 'rgba(0,0,0,0.85)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '24px', backdropFilter: 'blur(20px)', padding: '20px' }}
-                                                                    labelStyle={{ color: '#94a3b8', fontSize: '10px', fontWeight: 'black', marginBottom: '8px', textTransform: 'uppercase' }}
-                                                                    itemStyle={{ color: '#10b981', fontSize: '14px', fontWeight: 'black' }}
+                                                                    contentStyle={{ backgroundColor: 'rgba(255,255,255,0.95)', border: '1px solid #e2e8f0', borderRadius: '16px', boxShadow: '0 10px 25px -5px rgba(0,0,0,0.1)', padding: '16px' }}
+                                                                    labelStyle={{ color: '#64748b', fontSize: '10px', fontWeight: 'black', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '0.1em' }}
+                                                                    itemStyle={{ color: '#047857', fontSize: '14px', fontWeight: 'black' }}
+                                                                    formatter={(value) => [`${value.toFixed(2)}%`, 'Reflectance']}
+                                                                    labelFormatter={(label) => `Wavelength: ${Math.round(label)} nm`}
                                                                 />
                                                                 <Area
                                                                     type="monotone"
@@ -478,10 +489,10 @@ const App = () => {
                                                                     strokeWidth={4}
                                                                     fill="url(#glow)"
                                                                     animationDuration={2500}
-                                                                    activeDot={{ r: 8, fill: '#fff', stroke: '#10b981', strokeWidth: 4 }}
+                                                                    activeDot={{ r: 6, fill: '#fff', stroke: '#10b981', strokeWidth: 3 }}
                                                                 />
-                                                                <ReferenceLine x={parseFloat(activeData.key931)} stroke="#10b981" strokeDasharray="5 5" />
-                                                                <ReferenceLine x={parseFloat(activeData.key653)} stroke="#22d3ee" strokeDasharray="5 5" />
+                                                                <ReferenceLine x={parseFloat(activeData.key931)} stroke="#10b981" strokeDasharray="5 5" label={{ value: 'NIR', position: 'insideTopLeft', fill: '#10b981', fontSize: 10, fontWeight: 'bold' }} />
+                                                                <ReferenceLine x={parseFloat(activeData.key653)} stroke="#22d3ee" strokeDasharray="5 5" label={{ value: 'RED', position: 'insideTopRight', fill: '#22d3ee', fontSize: 10, fontWeight: 'bold' }} />
                                                             </AreaChart>
                                                         </ResponsiveContainer>
                                                     ) : (

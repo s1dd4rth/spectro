@@ -324,7 +324,7 @@ const App = () => {
                                 </div>
 
                                 <input id="file-upload" type="file" accept=".csv,.xlsx,.xls" className="hidden" onChange={handleFileUpload} />
-                                <button className="px-10 py-4 bg-white text-white rounded-2xl font-black text-[11px] uppercase tracking-widest shadow-[0_10px_40px_rgba(0,0,0,0.05)] hover:shadow-black/5 transition-all active:scale-95">
+                                <button className="px-10 py-4 bg-slate-900 text-white rounded-2xl font-black text-[11px] uppercase tracking-widest shadow-[0_10px_40px_rgba(0,0,0,0.05)] hover:shadow-black/5 transition-all active:scale-95">
                                     Initiate Upload
                                 </button>
                             </div>
